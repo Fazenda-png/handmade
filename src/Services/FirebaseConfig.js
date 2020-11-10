@@ -1,6 +1,6 @@
 import firebase from 'firebase'
 
-var Config = {
+var firebaseConfig = {
     apiKey: "AIzaSyBtR_Rbj124sNKvMfzSPl4XPokcaNyh9YU",
     authDomain: "handmade-1efde.firebaseapp.com",
     databaseURL: "https://handmade-1efde.firebaseio.com",
@@ -10,7 +10,7 @@ var Config = {
     appId: "1:450588259828:web:af2ff439d029abb0a835a1"
   };
   // Initialize Firebase
-  firebase.initializeApp(Config);
+  firebase.initializeApp(firebaseConfig);
   
 
-export default Config
+export default firebase
