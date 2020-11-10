@@ -1,7 +1,8 @@
-import firebase from "firebase"
-import Config from "./FirebaseConfig.js"
+import firebase from 'firebase'
+import firebaseConfig from './firebaseConfig'
 
-
-firebase.initialzeApp(config)
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+}
 
 export default firebase
