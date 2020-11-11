@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Button, Grid, Paper, Container } from '@material-ui/core';
+import {  Grid, Paper, Container } from '@material-ui/core';
 import Logo from '../images/logo.png'
+import Modal from './Modal'
 
 export default class components extends Component {
     render() {
@@ -13,12 +14,7 @@ export default class components extends Component {
                         </Grid>
                         <Grid item sm={1} xs={12} style={{justifyContent: "center", display: "flex", alignItems: "center"}}>
                             <Paper elevation={0}>
-                                <Button
-                                    variant="outlined"
-                                    href="/login"
-                                    style={{ width: "100%" , color: "#8b0e33", border: "solid 1px #8b0e33" }}>
-                                    Entrar
-                            </Button>
+                            <Modal></Modal>
                             </Paper>
                         </Grid>
                     </Grid>

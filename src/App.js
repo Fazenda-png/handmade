@@ -1,8 +1,7 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import Main from './pages/Main/Main'
-import Login from './pages/Login/login'
-// import Firebase from './services/firebaseConnect'
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Main from './pages/Main/Main';
+import Home from './pages/Home/Home'
 
 function App() {
   return (
@@ -10,7 +9,7 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route path="/" exact={true} component={Main} />
-        <Route path="/login"  component={Login} />
+        <Route path="/Home" exact={true} component={Home} />
       </Switch>
     </BrowserRouter>
     </>
