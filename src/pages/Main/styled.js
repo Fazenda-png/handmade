@@ -14,4 +14,4 @@ export const SubTitle = styled.h4`
 export default {
     Title, 
     SubTitle
-}
+} 

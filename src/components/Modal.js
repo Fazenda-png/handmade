@@ -3,14 +3,11 @@ import { Button, Grid, TextField, Paper, Tabs, Tab, AppBar, Typography, Box } fr
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Firebase from '../services/firebaseConnect'
-
-function rand() {
-    return Math.round(Math.random() * 20) - 10;
-}
+import ModalCadastro from './modalCadastro'
 
 function getModalStyle() {
-    const top = 50 + rand();
-    const left = 50 + rand();
+    const top = 50
+    const left = 50
 
     return {
         top: `${top}%`,
@@ -42,7 +39,7 @@ function TabPanel(props) {
             {...other}
         >
             {value === index && (
-                <Box div={2}>
+                <Box span={2}>
                     <Typography>{children}</Typography>
                 </Box>
             )}
@@ -81,17 +78,19 @@ export default function SimpleModal() {
             .auth()
             .signInWithEmailAndPassword(email, password)
             .then((retorno) => {
-
+                document.getElementById("erro").style.display = "none";
+                window.location = "/home"
             })
             .catch((erro) => {
-                console.log("erro lixo")
+                document.getElementById("erro").style.display = "block";
             })
+
     }
-    // const mensagem = (
-    //     <div style={{ color: "red", textAlign: "center", visibility: "visible" }}>
-    //         <p>Errou alguma credencial</p>
-    //     </div>
-    // );
+    const mensagem = (
+        <div>
+            <p>Errou alguma credencial</p>
+        </div>
+    );
 
     const classed = useStyled();
     const [value, setValue] = React.useState(0);
@@ -123,6 +122,7 @@ export default function SimpleModal() {
                                     variant="outlined"
                                     size="small"
                                     type="email"
+                                    id="emailLogin"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     style={{ width: "100%", marginBottom: 10 }} />
@@ -132,9 +132,11 @@ export default function SimpleModal() {
                                     label="Senha"
                                     variant="outlined"
                                     type="password"
+                                    id="senhaLogin"
                                     size="small"
                                     style={{ width: "100%", marginBottom: 10 }}
                                 />
+                                <div id="erro" style={{ color: "#8b0e33", textAlign: "center", display: "none", margin: "0 15px 15px" }}>{mensagem}</div>
                                 <Button
                                     onClick={login}
                                     variant="outlined"
@@ -146,43 +148,7 @@ export default function SimpleModal() {
                     </Grid>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                    <Grid container spacing={1}>
-                        <Grid item sm={12} xs={12}>
-                            <h1 style={{ textAlign: "center", color: "#8b0e33" }}>Entrar</h1>
-                            <Paper elevation={0}>
-                                <TextField
-                                    label="E-mail"
-                                    variant="outlined"
-                                    size="small"
-                                    type="email"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    style={{ width: "100%", marginBottom: 10 }} />
-                                <TextField
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    label="Senha"
-                                    variant="outlined"
-                                    type="password"
-                                    size="small"
-                                    style={{ width: "100%", marginBottom: 10 }}
-                                />
-                                <TextField
-                                    label="Confirme sua senha"
-                                    variant="outlined"
-                                    type="password"
-                                    size="small"
-                                    style={{ width: "100%", marginBottom: 10 }}
-                                />
-                                <Button
-                                    onClick={login}
-                                    variant="outlined"
-                                    style={{ width: "100%", color: "#8b0e33", border: "solid 1px #8b0e33" }}>
-                                    Entrar
-                                </Button>
-                            </Paper>
-                        </Grid>
-                    </Grid>
+                    <ModalCadastro></ModalCadastro>
                 </TabPanel>
             </div>
         </div>
