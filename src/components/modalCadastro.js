@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Grid, TextField, Paper } from '@material-ui/core';
-// import Firebase from '../services/firebaseConnect'
-import bd from '../services/firebaseConfig'
+import db from '../services/firebaseConfig'
 
 export default function ModalCadastro() {
 
@@ -12,30 +11,26 @@ export default function ModalCadastro() {
 
     const Cadastro = () => {
 
-        console.log("Nome: " + cadastroNome)
-        console.log("Email: " + cadastroEmail)
-        console.log("Senha: " + cadastroSenha)
-        console.log("Cidade: " + cadastroCidade)
+        db.collection("usuario").set({
+            nome: cadastroNome,
+            cidade: cadastroCidade,
+            email: cadastroEmail,
+            senha: cadastroSenha
+        })
+            .then(function (docRef) {
+                console.log("Document written with ID: ", docRef.id);
+            })
+            .catch(function (error) {
+                console.error("Error adding document: ", error);
+            });
     }
 
-    bd.collection("Usuario").doc("user").set({
-        nome: "João Pedro",
-        cidade: "Passo fundo",
-        email: "fazenda.j.p.s@hotmail.com",
-        senha: "123456"
-    })
 
-    .then(function() {
-        console.log("Document successfully written!");
-    })
-    .catch(function(error) {
-        console.error("Error writing document: ", error);
-    });
 
     return (
         <Grid container spacing={1}>
             <Grid item sm={12} xs={12}>
-                <h1 style={{ textAlign: "center", color: "#8b0e33" }}>Entrar</h1>
+                <h1 style={{ textAlign: "center", color: "#8b0e33" }}>Cadastro</h1>
                 <Paper elevation={0}>
                     <TextField
                         label="Nome"

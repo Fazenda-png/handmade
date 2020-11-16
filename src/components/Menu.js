@@ -111,7 +111,7 @@ export default function PersistentDrawerLeft() {
                 })}
             >
                 <Toolbar
-                    style={{ background: "#f5000082" }}
+                    style={{ background: "#fa7d7d" }}
                 >
                     <IconButton
                         color="inherit"
