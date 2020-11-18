@@ -15,11 +15,14 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import PermIdentityIcon from '@material-ui/icons/PermIdentity';
+import AddIcon from '@material-ui/icons/Add';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import HistoryIcon from '@material-ui/icons/History';
+import MenuBookIcon from '@material-ui/icons/MenuBook';
+import HomeIcon from '@material-ui/icons/Home';
 import Button from '@material-ui/core/Button';
-import firebase from '../services/firebaseConfig'
+import Firebase from '../services/firebaseConnect'
+import { useHistory } from "react-router-dom";
+
 
 const drawerWidth = 240;
 
@@ -93,13 +96,20 @@ export default function PersistentDrawerLeft() {
         setOpen(false);
     };
 
-    const sair = () => {
+    const history = useHistory();
 
-        firebase.auth().signOut().then(function () {
-            window.location = "/"
-        }).catch(function (error) {
-            console.log("deu merda")
-        });
+    const nomeTitle = localStorage.getItem('email')
+
+    const sair = () => {
+        sessionStorage.removeItem("uuid")
+        Firebase
+            .auth()
+            .signOut()
+            .then(() => {
+                history.push("/")
+            }).catch(function (error) {
+                history.push("/")
+            });
     }
     return (
         <div className={classes.root}>
@@ -123,7 +133,7 @@ export default function PersistentDrawerLeft() {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap>
-                        Bem-vindo(a) (NOME) ao Handmade
+                        Bem-vindo(a) {nomeTitle} ao Handmade
           </Typography>
                 </Toolbar>
             </AppBar>
@@ -143,10 +153,30 @@ export default function PersistentDrawerLeft() {
                 </div>
                 <Divider />
                 <List>
-                    {['Perfil', 'Pedidos feitos'].map((text, index) => (
+                    {['Home'].map((text, index) => (
                         <Button href={text.toLowerCase()} key={text}>
                             <ListItem button >
-                                <ListItemIcon>{index % 2 === 0 ? <PermIdentityIcon /> : <HistoryIcon />}</ListItemIcon>
+                                <ListItemIcon>{<HomeIcon />}</ListItemIcon>
+                                <ListItemText primary={text} />
+                            </ListItem>
+                        </Button>
+                    ))}
+                </List>
+                <List>
+                    {['Adicionar'].map((text, index) => (
+                        <Button href={text.toLowerCase()} key={text}>
+                            <ListItem button >
+                                <ListItemIcon>{<AddIcon />}</ListItemIcon>
+                                <ListItemText primary={text} />
+                            </ListItem>
+                        </Button>
+                    ))}
+                </List>
+                <List>
+                    {['Pedidos'].map((text, index) => (
+                        <Button href={text.toLowerCase()} key={text}>
+                            <ListItem button >
+                                <ListItemIcon>{<MenuBookIcon />}</ListItemIcon>
                                 <ListItemText primary={text} />
                             </ListItem>
                         </Button>

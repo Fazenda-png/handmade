@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
-import { Button, Grid, TextField, Paper, Tabs, Tab, AppBar, Typography, Box } from '@material-ui/core';
+import React, { useState, useLayoutEffect } from 'react';
+import { Button, Grid, TextField, Paper, Tabs, Tab, AppBar, Typography, Box, Checkbox } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Firebase from '../services/firebaseConnect'
-import ModalCadastro from './modalCadastro'
+import ModalCadastro from './ModalCadastro'
+import { useHistory } from "react-router-dom";
+
 
 function getModalStyle() {
     const top = 50
@@ -69,28 +71,52 @@ export default function SimpleModal() {
         setOpen(false);
     };
 
+    const history = useHistory();
+
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [mensagem, setMensagem] = useState("")
+    const [lembrar, setLembrar] = useState(false)
+
+    useLayoutEffect(() => {
+        let emailStorage = localStorage.getItem('email')
+        let passwordStorage = localStorage.getItem('password')
+        if (emailStorage && passwordStorage) {
+            setEmail(emailStorage)
+            setPassword(passwordStorage)
+            setLembrar(true)
+        }
+    }, [])
+
+
 
     const login = () => {
+
+
+        if (lembrar == false) {
+            localStorage.removeItem("email")
+            localStorage.removeItem("password")
+        }
 
         Firebase
             .auth()
             .signInWithEmailAndPassword(email, password)
             .then((retorno) => {
-                document.getElementById("erro").style.display = "none";
-                window.location = "/home"
+                sessionStorage.setItem("uuid", retorno.user.uid)
+                if (lembrar === true) {
+                    localStorage.setItem("email", email)
+                    localStorage.setItem("password", password)
+                }
+                setMensagem("")
+                history.push("/home");
+
             })
             .catch((erro) => {
-                document.getElementById("erro").style.display = "block";
+                console.log(erro)
+                setMensagem("Usuário ou senha inválidos!")
             })
-
     }
-    const mensagem = (
-        <div>
-            <p>Errou alguma credencial</p>
-        </div>
-    );
+    
 
     const classed = useStyled();
     const [value, setValue] = React.useState(0);
@@ -136,7 +162,11 @@ export default function SimpleModal() {
                                     size="small"
                                     style={{ width: "100%", marginBottom: 10 }}
                                 />
-                                <div id="erro" style={{ color: "#8b0e33", textAlign: "center", display: "none", margin: "0 15px 15px" }}>{mensagem}</div>
+                                <Checkbox
+                                    checked={lembrar}
+                                    onChange={(e) => setLembrar(e.target.checked)}
+                                />Lembre-me
+                                <Grid item  sm={12} xs={12} style={{ color: "#8b0e33", textAlign: "center", margin: "0 15px 15px" }}>{mensagem}</Grid>
                                 <Button
                                     onClick={login}
                                     variant="outlined"

@@ -22,7 +22,8 @@ function Main() {
                             <SubTitle>
                                 Como funciona:
                             </SubTitle>
-                            <p>A intensão do site é ser o mais intuitivo o possivel para os vendedores e para seus clientes. Basecamente o vendedor ira realizar o seu cadastro e apresentar um "Cardapio" onde seu cliente ira poder ter acesso e realizar a encomenda dos produtos via WhatsApp</p>
+                            <p>  A intensão do site é ser o mais intuitivo o possível para os vendedores e para seus clientes. Basicamente o vendedor ira realizar o seu cadastro e apresentar um "Cardápio" onde seu cliente ira poder ter acesso e realizar a encomenda dos produtos via WhatsApp
+</p>
                             <SubTitle>
                                 Para que é:
                             </SubTitle>

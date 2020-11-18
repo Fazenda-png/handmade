@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Grid, TextField, Paper } from '@material-ui/core';
-import db from '../services/firebaseConfig'
+import Firebase from '../services/firebaseConnect'
 
 export default function ModalCadastro() {
 
@@ -11,18 +11,23 @@ export default function ModalCadastro() {
 
     const Cadastro = () => {
 
-        db.collection("usuario").set({
+        const objeto = {
             nome: cadastroNome,
-            cidade: cadastroCidade,
             email: cadastroEmail,
+            cidade: cadastroCidade,
             senha: cadastroSenha
-        })
-            .then(function (docRef) {
-                console.log("Document written with ID: ", docRef.id);
+        }
+
+        Firebase
+            .database()
+            .ref("usuario")
+            .push(objeto)
+            .then(() => {
+                console.log("usuario salvo")
             })
-            .catch(function (error) {
-                console.error("Error adding document: ", error);
-            });
+            .catch((erro) => {
+                console.log("erro seu merda")
+            })
     }
 
 

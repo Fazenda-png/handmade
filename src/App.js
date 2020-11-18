@@ -1,19 +1,35 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Main from './pages/Main/Main';
-import Home from './pages/Home/Home'
-import Perfil from './pages/Perfil/Perfil'
+import Home from './pages/Home/home'
+import Adicionar from './pages/Adcionar/Adicionar'
+
 
 function App() {
+
+  const RotaPrivadas = ({ component: Component }) => {
+    return <Route
+      render={(props => {
+        let isAuthenticated = sessionStorage.getItem("uuid")
+        if (isAuthenticated) {
+          return <Component {...props} />
+        } else {
+          return <Redirect to={{ pathname: "/" }} />
+        }
+      })}
+
+    />
+  }
+
   return (
     <>
-    <BrowserRouter>
-      <Switch>
-        <Route path="/" exact={true} component={Main} />
-        <Route path="/Home" exact={true} component={Home} />
-        <Route path="/Perfil" exact={true} component={Perfil} />
-      </Switch>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" exact={true} component={Main} />
+          <RotaPrivadas path="/home" component={Home} />
+          <RotaPrivadas path="/adicionar" component={Adicionar} />
+        </Switch>
+      </BrowserRouter>
     </>
   );
 }
