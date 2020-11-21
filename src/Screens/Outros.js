@@ -8,7 +8,7 @@ export default function Screens() {
     const [itemQuan, setItemQuan] = useState("")
     const [nomePessoa, setNomePessoa] = useState("")
     const [aptoPessoa, setAptoPessoa] = useState("")
-    const [tipoItem, setTipoItem] = useState("Cozinha")
+    const [tipoItem, setTipoItem] = useState("Outros")
     const [mensagem, setMensagem] = useState("")
 
     const limpar = () => {
