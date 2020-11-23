@@ -59,7 +59,7 @@ export default function Screens() {
                             onChange={(e) => setItemEm(e.target.value)}
                             style={{ width: "75%", marginBottom: 10 }} />
                         <TextField
-                            label="Quantidade"
+                            label="Quantidade (Kg, g)"
                             variant="outlined"
                             size="small"
                             type="text"

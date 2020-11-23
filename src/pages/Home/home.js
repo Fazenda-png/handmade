@@ -1,7 +1,8 @@
 import React, { useLayoutEffect, useState } from 'react'
-import { Grid, Paper, CardContent, TableRow, Container } from '@material-ui/core';
+import { Grid, Paper, TableCell, TableRow, Container } from '@material-ui/core';
 import Firebase from '../../services/firebaseConnect'
 import Menu from '../../components/Menu'
+import Fundo from '../../components/Fundo'
 
 
 
@@ -30,12 +31,13 @@ function Home(props) {
 
     return (
         <div>
+            <Fundo></Fundo>
             <Menu></Menu>
             <Container>
                 <Grid container spacing={1} style={{padding: "100px"}}>
-                    <Grid item sm={12} xs={12}>
+                    <Grid item sm={12} xs={12} style={{backgroundColor: "#ffffff", borderRadius: "5px"}}>
                         {lista.map((item, key) => {
-                            return <CardContent key={key}>
+                            return <TableRow key={key} style={{width: "100%"}}>
                                 <TableCell component="th" scope="row">
                                     {item.nome_pessoa}
                                 </TableCell>
@@ -43,7 +45,7 @@ function Home(props) {
                                 <TableCell align="right">{item.nome}</TableCell>
                                 <TableCell align="right">{item.tipo}</TableCell>
                                 <TableCell align="right">{item.quantidade}</TableCell>
-                            </CardContent>
+                            </TableRow>
                         }
                         )}
                     </Grid>
