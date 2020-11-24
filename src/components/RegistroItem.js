@@ -11,12 +11,11 @@ export default function RegistroItem() {
     const [screen, setScreen] = useState(0)
 
     return (
-        <Grid container spacing={1} style={{ padding: "100px" }}>
+        <Grid container spacing={1} style={{ padding: " 0 100px" }}>
             <Grid item sm={12} xs={12} >
                 <Grid item sm={12} xs={12} style={{marginBottom: "25px"}}>
-                    <h1 style={{ textAlign: "center", color: "#8b0e33" }}>Adicione um item para emprestimo</h1>
 
-                    <h3 style={{ textAlign: "left", color: "#8b0e33" }}>Selecione o tipo do item emprestado:</h3>
+                    <h3 style={{ textAlign: "left", color: "#8b0e33", paddingTop: "55px" }}>Selecione o tipo do item emprestado:</h3>
                     <Button variant="contained" style={{ backgroundColor: "#8b0e33", color: "#ffffff", alignItems: "center", margin: "0 5px 0 5px" }} onClick={() => setScreen(0)}>
                         Cozinha
                     </Button>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Grid, TextField, Paper } from '@material-ui/core';
-import Firebase from '../services/firebaseConnect'
+import Firebase from '../Services/FirebaseConnect'
 
 export default function Screens() {
 
@@ -8,7 +8,7 @@ export default function Screens() {
     const [itemQuan, setItemQuan] = useState("")
     const [nomePessoa, setNomePessoa] = useState("")
     const [aptoPessoa, setAptoPessoa] = useState("")
-    const [tipoItem, setTipoItem] = useState("Ferramentas")
+    const [tipoItem, setTipoItem] = useState("Ferramenta")
     const [mensagem, setMensagem] = useState("")
 
     const limpar = () => {
@@ -44,68 +44,65 @@ export default function Screens() {
 
 
     return (
-        <div>
-            <Grid container spacing={1}>
-                <Grid item sm={12} xs={12} style={{padding: "50px"}}>
-                    <h1 style={{ textAlign: "center", color: "#8b0e33" }}>******</h1>
-                    <Paper elevation={0}>
-                        <TextField
-                            label="Nome do item"
-                            variant="outlined"
-                            size="small"
-                            type="text"
-                            id="nomeCadastro"
-                            value={itemEm}
-                            onChange={(e) => setItemEm(e.target.value)}
-                            style={{ width: "75%", marginBottom: 10 }} />
-                        <TextField
-                            label="Quantidade"
-                            variant="outlined"
-                            size="small"
-                            type="text"
-                            id="quantidadeCadastro"
-                            value={itemQuan}
-                            onChange={(e) => setItemQuan(e.target.value)}
-                            style={{ width: "75%", marginBottom: 10 }} />
-                        <TextField
-                            label="Nome do morador"
-                            variant="outlined"
-                            size="small"
-                            type="text"
-                            id="nomeMoradorCadastro"
-                            value={nomePessoa}
-                            onChange={(e) => setNomePessoa(e.target.value)}
-                            style={{ width: "75%", marginBottom: 10 }} />
-                        <TextField
-                            label="Número do apartamento"
-                            variant="outlined"
-                            size="small"
-                            type="text"
-                            id="aptoNumCadastro"
-                            value={aptoPessoa}
-                            onChange={(e) => setAptoPessoa(e.target.value)}
-                            style={{ width: "75%", marginBottom: 10 }} />
-                        <TextField
-                            label="Tipo do utensilio"
-                            variant="outlined"
-                            size="small"
-                            type="text"
-                            id="tipoUteCadastro"
-                            value={tipoItem}
-                            onChange={(e) => setTipoItem(e.target.value)}
-                            style={{ width: "75%", marginBottom: 10 }} />
-                        <Grid item sm={12} xs={12} style={{textAlign: "center"}}>
-                            {mensagem}
-                        </Grid>
-                        <Button
-                            onClick={CadastroItem}
-                            variant="outlined"
-                            style={{ width: "75%", color: "#8b0e33", border: "solid 1px #8b0e33" }}>
-                            Entrar
-                        </Button>
-                    </Paper>
+        <div style={{ padding: "50px 100px" }}>
+            <h1 style={{ textAlign: "center", color: "#8b0e33" }}>Adicionar item</h1>
+            <Paper elevation={0}>
+                <TextField
+                    label="Nome do item"
+                    variant="outlined"
+                    size="small"
+                    type="text"
+                    id="nomeCadastro"
+                    value={itemEm}
+                    onChange={(e) => setItemEm(e.target.value)}
+                    style={{ width: "100%", marginBottom: 10 }} />
+                <TextField
+                    label="Quantidade (Kg, g)"
+                    variant="outlined"
+                    size="small"
+                    type="text"
+                    id="quantidadeCadastro"
+                    value={itemQuan}
+                    onChange={(e) => setItemQuan(e.target.value)}
+                    style={{ width: "100%", marginBottom: 10 }} />
+                <TextField
+                    label="Nome do morador"
+                    variant="outlined"
+                    size="small"
+                    type="text"
+                    id="nomeMoradorCadastro"
+                    value={nomePessoa}
+                    onChange={(e) => setNomePessoa(e.target.value)}
+                    style={{ width: "100%", marginBottom: 10 }} />
+                <TextField
+                    label="Número do apartamento"
+                    variant="outlined"
+                    size="small"
+                    type="text"
+                    id="aptoNumCadastro"
+                    value={aptoPessoa}
+                    onChange={(e) => setAptoPessoa(e.target.value)}
+                    style={{ width: "100%", marginBottom: 10 }} />
+                <TextField
+                    label="Tipo do utensilio"
+                    variant="outlined"
+                    size="small"
+                    type="text"
+                    id="tipoUteCadastro"
+                    value={tipoItem}
+                    onChange={(e) => setTipoItem(e.target.value)}
+                    style={{ width: "100%", marginBottom: 10 }} />
+                <Grid item sm={12} xs={12} style={{ textAlign: "center" }}>
+                    {mensagem}
                 </Grid>
-            </Grid>
+                <Button
+                    onClick={CadastroItem}
+                    variant="outlined"
+                    style={{ width: "100%", color: "#8b0e33", border: "solid 1px #8b0e33" }}>
+                    Enviar
+                        </Button>
+            </Paper>
+
         </div>
     );
 }

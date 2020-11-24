@@ -20,7 +20,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import HomeIcon from '@material-ui/icons/Home';
 import Button from '@material-ui/core/Button';
-import Firebase from '../services/firebaseConnect'
+import Firebase from '../Services/FirebaseConnect'
 import { useHistory } from "react-router-dom";
 
 

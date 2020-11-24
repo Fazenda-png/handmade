@@ -2,8 +2,7 @@ import React from 'react'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import { Container, Grid, Paper } from '@material-ui/core';
-import Mapa from '../../images/mapa3.png'
-import {Title, SubTitle} from './styled'
+import { Title, SubTitle } from './styled'
 
 function Main() {
 
@@ -32,9 +31,7 @@ function Main() {
                         </Paper>
                     </Grid>
                     <Grid item xs={6}>
-                        <Paper elevation={0}>
-                            <img style={{width: "710px"}} alt="Imagem ilustrativa MAPA" src={Mapa}></img>
-                        </Paper>
+
                     </Grid>
                 </Grid>
             </Container>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Grid, TextField, Paper } from '@material-ui/core';
-import Firebase from '../services/firebaseConnect'
+import Firebase from '../Services/FirebaseConnect'
 
 export default function ModalCadastro() {
 
