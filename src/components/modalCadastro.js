@@ -7,14 +7,14 @@ export default function ModalCadastro() {
     const [cadastroNome, setCadastroNome] = useState("")
     const [cadastroEmail, setCadastroEmail] = useState("")
     const [cadastroSenha, setCadastroSenha] = useState("")
-    const [cadastroCidade, setCadastroCidade] = useState("")
+    const [cadastroApto, setCadastroApto] = useState("")
 
     const Cadastro = () => {
 
         const objeto = {
             nome: cadastroNome,
             email: cadastroEmail,
-            cidade: cadastroCidade,
+            Apartamento: cadastroApto,
             senha: cadastroSenha
         }
 
@@ -56,26 +56,19 @@ export default function ModalCadastro() {
                         onChange={(e) => setCadastroEmail(e.target.value)}
                         style={{ width: "100%", marginBottom: 10 }} />
                     <TextField
-                        label="Cidade"
+                        label="Numero do apartamento"
                         variant="outlined"
                         size="small"
                         type="email"
-                        id="cidadeCadastro"
-                        value={cadastroCidade}
-                        onChange={(e) => setCadastroCidade(e.target.value)}
+                        id="cadastroApto"
+                        value={cadastroApto}
+                        onChange={(e) => setCadastroApto(e.target.value)}
                         style={{ width: "100%", marginBottom: 10 }} />
                     <TextField
                         value={cadastroSenha}
                         onChange={(e) => setCadastroSenha(e.target.value)}
                         label="Senha"
                         id="senhaCadastro"
-                        variant="outlined"
-                        type="password"
-                        size="small"
-                        style={{ width: "100%", marginBottom: 10 }}
-                    />
-                    <TextField
-                        label="Confirme sua senha"
                         variant="outlined"
                         type="password"
                         size="small"

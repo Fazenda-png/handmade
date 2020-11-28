@@ -1,5 +1,6 @@
 import React, { useLayoutEffect, useState } from "react";
 import {
+  Button,
   Grid,
   Paper,
   TableCell,
@@ -9,7 +10,6 @@ import {
   Table,
   TableBody,
   TableHead,
-  Button,
 } from "@material-ui/core";
 import Firebase from "../../Services/FirebaseConnect";
 import Menu from "../../components/Menu";
@@ -20,8 +20,8 @@ function Home(props) {
 
   useLayoutEffect(() => {
     Firebase.database()
-      .ref("pedidos")
-      .on("value", (snapchot) => {
+      .ref(`pedidos`)
+      .on('value', (snapchot) => {
         // converter objetos em listas
         if (snapchot.val()) {
           let dados = snapchot.val();
@@ -30,28 +30,35 @@ function Home(props) {
             return { ...dados[key], id: key };
           });
           setLista(lista);
-        }else{
-            setLista([]); 
+        } else {
+          setLista([]);
         }
-        console.log(lista);
       });
   }, []);
 
-  const Emprestimo = () => {
+
+  const Empre = (item) => {
     const empre = {
       estado: "Emprestado",
     };
 
     Firebase.database()
-      .ref("pedidos/")
-      .update(empre)
-      .then((retorno) => {
-        console.log("VADIA DO CARALHO");
-      })
-      .catch((erro) => {
-        console.log("FILHA DA PUTA");
+      .ref(`pedidos`)
+      .on("value", (snapchot) => {
+        const saida = snapchot.val();
+        const chave = Object.keys(saida);
+        const pedi = chave.map((key) => {
+          return { ...saida[key], id: key };
+        });
+        Firebase.database()
+          .ref(`pedidos/${item.id}`)
+          .update(empre)
+          .then((retorno) => {
+          })
+          .catch((erro) => { });
       });
   };
+
 
   return (
     <div>
@@ -68,6 +75,7 @@ function Home(props) {
                   <TableCell align="right">Item</TableCell>
                   <TableCell align="right">Tipo do item</TableCell>
                   <TableCell align="right">Quantidade</TableCell>
+                  <TableCell align="right">Status</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -81,9 +89,10 @@ function Home(props) {
                       <TableCell align="right">{item.nome}</TableCell>
                       <TableCell align="right">{item.tipo}</TableCell>
                       <TableCell align="right">{item.quantidade}</TableCell>
-                      <Button onClick={Emprestimo} variant="contained">
-                        Emprestar
-                      </Button>
+                      <TableCell align="right">{item.estado}</TableCell>
+                      <TableCell><Button 
+                        onClick={() => Empre(item)}
+                      >Emprestar</Button></TableCell>
                     </TableRow>
                   );
                 })}

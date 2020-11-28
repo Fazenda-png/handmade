@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Grid, TextField, Paper } from "@material-ui/core";
 import Firebase from "../Services/FirebaseConnect";
+import { v4 as uuidv4 } from "uuid";
 
 export default function Screens() {
   const [itemEm, setItemEm] = useState("");
@@ -8,7 +9,10 @@ export default function Screens() {
   const [nomePessoa, setNomePessoa] = useState("");
   const [aptoPessoa, setAptoPessoa] = useState("");
   const [tipoItem, setTipoItem] = useState("Cozinha");
+  const [estado, setEstado] = useState("Disponivel");
   const [mensagem, setMensagem] = useState("");
+  const [aptoEmpre, setAptoEmpre] = useState("");
+  const [nomeEmpre, setnomeEmpre] = useState("");
 
   const limpar = () => {
     setItemEm("");
@@ -23,12 +27,17 @@ export default function Screens() {
       apto_pessoa: aptoPessoa,
       nome: itemEm,
       tipo: tipoItem,
+      estado: estado,
       quantidade: itemQuan,
+      nome_emprest: nomeEmpre,
+      apto_emprest: aptoEmpre,
     };
 
+    const code = uuidv4();
+
     Firebase.database()
-      .ref("pedidos")
-      .push(utensilio)
+      .ref(`pedidos/${code}`)
+      .set(utensilio)
       .then(() => {
         console.log("pedido salvo");
         setMensagem(
@@ -53,7 +62,7 @@ export default function Screens() {
           id="nomeCadastro"
           value={itemEm}
           onChange={(e) => setItemEm(e.target.value)}
-          style={{ width: "100%", marginBottom: 10 }}
+          style={{ width: "100%", marginBottom: "10px"}}
         />
         <TextField
           label="Quantidade (Kg, g)"
@@ -63,7 +72,7 @@ export default function Screens() {
           id="quantidadeCadastro"
           value={itemQuan}
           onChange={(e) => setItemQuan(e.target.value)}
-          style={{ width: "100%", marginBottom: 10 }}
+          style={{ width: "100%", marginBottom: "10px"}}
         />
         <TextField
           label="Nome do morador"
@@ -73,7 +82,7 @@ export default function Screens() {
           id="nomeMoradorCadastro"
           value={nomePessoa}
           onChange={(e) => setNomePessoa(e.target.value)}
-          style={{ width: "100%", marginBottom: 10 }}
+          style={{ width: "100%", marginBottom: "10px"}}
         />
         <TextField
           label="Número do apartamento"
@@ -83,7 +92,7 @@ export default function Screens() {
           id="aptoNumCadastro"
           value={aptoPessoa}
           onChange={(e) => setAptoPessoa(e.target.value)}
-          style={{ width: "100%", marginBottom: 10 }}
+          style={{ width: "100%", marginBottom: "10px"}}
         />
         <TextField
           label="Tipo do utensilio"
@@ -92,10 +101,11 @@ export default function Screens() {
           type="text"
           id="tipoUteCadastro"
           value={tipoItem}
+          disabled
           onChange={(e) => setTipoItem(e.target.value)}
-          style={{ width: "100%", marginBottom: 10 }}
+          style={{ width: "100%", marginBottom: "10px"}}
         />
-        <Grid item sm={12} xs={12} style={{ textAlign: "center" }}>
+        <Grid item sm={12} xs={12} style={{ textAlign: "center", marginBottom: "10px" }}>
           {mensagem}
         </Grid>
         <Button

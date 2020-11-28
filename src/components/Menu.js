@@ -19,6 +19,7 @@ import AddIcon from '@material-ui/icons/Add';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import HomeIcon from '@material-ui/icons/Home';
+import EmailIcon from '@material-ui/icons/Email';
 import Button from '@material-ui/core/Button';
 import Firebase from '../Services/FirebaseConnect'
 import { useHistory } from "react-router-dom";
@@ -177,6 +178,16 @@ export default function PersistentDrawerLeft() {
                         <Button href={text.toLowerCase()} style={{width: "100%"}} key={text}>
                             <ListItem button >
                                 <ListItemIcon>{<MenuBookIcon />}</ListItemIcon>
+                                <ListItemText primary={text} />
+                            </ListItem>
+                        </Button>
+                    ))}
+                </List>
+                <List>
+                    {['Contato'].map((text, index) => (
+                        <Button href={text.toLowerCase()} style={{width: "100%"}} key={text}>
+                            <ListItem button >
+                                <ListItemIcon>{<EmailIcon />}</ListItemIcon>
                                 <ListItemText primary={text} />
                             </ListItem>
                         </Button>

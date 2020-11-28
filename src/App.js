@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Main from './pages/Main/Main';
 import Home from './pages/Home/home'
 import Adicionar from './pages/Adcionar/Adicionar'
-
+import Pedidos from './pages/Pedidos/Pedidos'
 
 function App() {
 
@@ -28,6 +28,7 @@ function App() {
           <Route path="/" exact={true} component={Main} />
           <RotaPrivadas path="/home" component={Home} />
           <RotaPrivadas path="/adicionar" component={Adicionar} />
+          <RotaPrivadas path="/pedidos" component={Pedidos} />
         </Switch>
       </BrowserRouter>
     </>
