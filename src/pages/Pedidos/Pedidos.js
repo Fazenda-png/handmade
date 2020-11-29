@@ -23,6 +23,7 @@ function Pedidos() {
     Firebase
       .database()
       .ref(`/pedidos`)
+      .equalTo()
       .on('value', snapchot => {
         // converter objetos em listas
         if (snapchot.val()) {

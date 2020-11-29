@@ -1,51 +1,33 @@
 import React, { useState } from 'react';
 import { Button, Grid, TextField, Paper } from '@material-ui/core';
 import Firebase from '../Services/FirebaseConnect'
+import { useHistory } from "react-router-dom";
+
 
 export default function ModalCadastro() {
 
-    const [cadastroNome, setCadastroNome] = useState("")
     const [cadastroEmail, setCadastroEmail] = useState("")
     const [cadastroSenha, setCadastroSenha] = useState("")
-    const [cadastroApto, setCadastroApto] = useState("")
+
+    let history = useHistory()
 
     const Cadastro = () => {
-
-        const objeto = {
-            nome: cadastroNome,
-            email: cadastroEmail,
-            Apartamento: cadastroApto,
-            senha: cadastroSenha
-        }
-
         Firebase
-            .database()
-            .ref("usuario")
-            .push(objeto)
+            .auth()
+            .createUserWithEmailAndPassword(cadastroEmail, cadastroSenha)
             .then(() => {
-                console.log("usuario salvo")
-            })
-            .catch((erro) => {
-                console.log("erro seu merda")
-            })
+                console.log("deu certo")
+                history.push("/home")
+            }).catch(
+                console.log("deu erro")
+            )
     }
-
-
 
     return (
         <Grid container spacing={1}>
             <Grid item sm={12} xs={12}>
                 <h1 style={{ textAlign: "center", color: "#8b0e33" }}>Cadastro</h1>
                 <Paper elevation={0}>
-                    <TextField
-                        label="Nome"
-                        variant="outlined"
-                        size="small"
-                        type="name"
-                        id="nomeCadastro"
-                        value={cadastroNome}
-                        onChange={(e) => setCadastroNome(e.target.value)}
-                        style={{ width: "100%", marginBottom: 10 }} />
                     <TextField
                         label="E-mail"
                         variant="outlined"
@@ -54,15 +36,6 @@ export default function ModalCadastro() {
                         id="emailCadastro"
                         value={cadastroEmail}
                         onChange={(e) => setCadastroEmail(e.target.value)}
-                        style={{ width: "100%", marginBottom: 10 }} />
-                    <TextField
-                        label="Numero do apartamento"
-                        variant="outlined"
-                        size="small"
-                        type="email"
-                        id="cadastroApto"
-                        value={cadastroApto}
-                        onChange={(e) => setCadastroApto(e.target.value)}
                         style={{ width: "100%", marginBottom: 10 }} />
                     <TextField
                         value={cadastroSenha}
@@ -75,7 +48,7 @@ export default function ModalCadastro() {
                         style={{ width: "100%", marginBottom: 10 }}
                     />
                     <Button
-                        onClick={Cadastro}
+                        onClick={() => Cadastro()}
                         variant="outlined"
                         style={{ width: "100%", color: "#8b0e33", border: "solid 1px #8b0e33" }}>
                         Entrar

@@ -4,6 +4,7 @@ import Main from './pages/Main/Main';
 import Home from './pages/Home/home'
 import Adicionar from './pages/Adcionar/Adicionar'
 import Pedidos from './pages/Pedidos/Pedidos'
+import Contato from './pages/Contato/Contato'
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
           <RotaPrivadas path="/home" component={Home} />
           <RotaPrivadas path="/adicionar" component={Adicionar} />
           <RotaPrivadas path="/pedidos" component={Pedidos} />
+          <RotaPrivadas path="/contato" component={Contato} />
         </Switch>
       </BrowserRouter>
     </>

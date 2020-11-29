@@ -155,7 +155,7 @@ export default function PersistentDrawerLeft() {
                 <Divider />
                 <List>
                     {['Home'].map((text, index) => (
-                        <Button href={text.toLowerCase()} style={{width: "100%"}} key={text}>
+                        <Button href={text.toLowerCase()} style={{ width: "100%" }} key={text}>
                             <ListItem button >
                                 <ListItemIcon>{<HomeIcon />}</ListItemIcon>
                                 <ListItemText primary={text} />
@@ -165,7 +165,7 @@ export default function PersistentDrawerLeft() {
                 </List>
                 <List>
                     {['Adicionar'].map((text, index) => (
-                        <Button href={text.toLowerCase()} style={{width: "100%"}} key={text}>
+                        <Button href={text.toLowerCase()} style={{ width: "100%" }} key={text}>
                             <ListItem button >
                                 <ListItemIcon>{<AddIcon />}</ListItemIcon>
                                 <ListItemText primary={text} />
@@ -175,7 +175,7 @@ export default function PersistentDrawerLeft() {
                 </List>
                 <List>
                     {['Pedidos'].map((text, index) => (
-                        <Button href={text.toLowerCase()} style={{width: "100%"}} key={text}>
+                        <Button href={text.toLowerCase()} style={{ width: "100%" }} key={text}>
                             <ListItem button >
                                 <ListItemIcon>{<MenuBookIcon />}</ListItemIcon>
                                 <ListItemText primary={text} />
@@ -185,7 +185,7 @@ export default function PersistentDrawerLeft() {
                 </List>
                 <List>
                     {['Contato'].map((text, index) => (
-                        <Button href={text.toLowerCase()} style={{width: "100%"}} key={text}>
+                        <Button href={text.toLowerCase()} style={{ width: "100%" }} key={text}>
                             <ListItem button >
                                 <ListItemIcon>{<EmailIcon />}</ListItemIcon>
                                 <ListItemText primary={text} />
@@ -196,9 +196,9 @@ export default function PersistentDrawerLeft() {
                 <Divider />
                 <List>
                     {['Sair'].map((text, index) => (
-                        <Button onClick={sair} style={{width: "100%"}} key={text}>
+                        <Button onClick={sair} style={{ width: "100%" }} key={text}>
                             <ListItem button key={text}>
-                                <ListItemIcon>{index % 1 === 0 ? <ExitToAppIcon /> : <ExitToAppIcon />}</ListItemIcon>
+                                <ListItemIcon>{<ExitToAppIcon />}</ListItemIcon>
                                 <ListItemText primary={text} />
                             </ListItem>
                         </Button>
