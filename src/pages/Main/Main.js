@@ -28,7 +28,7 @@ function Main() {
                             <p>O condominio/edifícil será cadastrado e poderá ser acessado por qualquer morador, o mesmo pode fazer o cadastro de um pedido onde outros moradores poderão acompanhar e conseguir ver em tempo real o pedido e realizar o emprestimo.</p>
                         </Paper>
                     </Grid>
-                    <Grid item xs={6} style={{textAlign: "center", }}>
+                    <Grid item xs={6} style={{ textAlign: "center", }}>
                         <SubTitle>
                             Nome: João Pedro Fazenda dos Santos
                         </SubTitle>
@@ -37,9 +37,6 @@ function Main() {
                         </SubTitle>
                         <SubTitle>
                             R.A: 1117210
-                        </SubTitle>
-                        <SubTitle>
-                            Github: (colocar em casa)
                         </SubTitle>
                     </Grid>
                 </Grid>
