@@ -66,9 +66,9 @@ export default function Menu() {
           </Grid>
         </Grid>
       </Grid>
-      <Container style={{ margin: "40px" }}>
+      <Container style={{ marginTop: "40px" }}>
         <Grid item sm={12} xs={12}>
-          <Paper>
+          <Paper style={{background: "transparent", boxShadow: "none"}}>
             {screen == 0 &&
               <Home setScreen={setScreen} />
             }

@@ -8,7 +8,7 @@ export default class components extends Component {
     render() {
         return (
             <div>
-                <Container maxWidth="xl" style={{ background: "#f5000082", position: "relative", bottom: "0", justifyContent: "center", display: "flex", alignItems: "center", padding: "15px   " }}>
+                <Container maxWidth="xl" style={{ background: "#f5000082", position: "absolute", bottom: "0", justifyContent: "center", display: "flex", alignItems: "center", padding: "15px   " }}>
                     <Button
                         href="https://www.facebook.com/joao.fazendadossantos"
                         target= "_blank"

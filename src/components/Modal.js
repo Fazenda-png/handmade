@@ -118,7 +118,6 @@ export default function SimpleModal() {
         }, 2000);
       })
       .catch((erro) => {
-        console.log(erro);
         setMensagem("Usuário ou senha inválidos!");
       });
   };

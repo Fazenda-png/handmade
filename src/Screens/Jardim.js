@@ -32,14 +32,12 @@ export default function Screens() {
       .ref("pedidos")
       .push(utensilio)
       .then(() => {
-        console.log("pedido salvo");
         setMensagem(
           "*O utensilio desponibilizado por qualquer modador tem até 7 dias para ser devolvido"
         );
         limpar();
       })
       .catch((erro) => {
-        console.log("erro seu merda");
       });
   };
 
@@ -55,7 +53,7 @@ export default function Screens() {
           id="nomeCadastro"
           value={itemEm}
           onChange={(e) => setItemEm(e.target.value)}
-          style={{ width: "100%", marginBottom: "10px" }}
+          style={{ width: "100%", marginBottom: "10px",  background: "#FFFFFF" }}
         />
         <TextField
           label="Quantidade (Kg, g)"
@@ -65,7 +63,7 @@ export default function Screens() {
           id="quantidadeCadastro"
           value={itemQuan}
           onChange={(e) => setItemQuan(e.target.value)}
-          style={{ width: "100%", marginBottom: "10px" }}
+          style={{ width: "100%", marginBottom: "10px",  background: "#FFFFFF" }}
         />
         <TextField
           label="Nome do morador"
@@ -75,7 +73,7 @@ export default function Screens() {
           id="nomeMoradorCadastro"
           value={nomePessoa}
           onChange={(e) => setNomePessoa(e.target.value)}
-          style={{ width: "100%", marginBottom: "10px" }}
+          style={{ width: "100%", marginBottom: "10px",  background: "#FFFFFF" }}
         />
         <TextField
           label="Número do apartamento"
@@ -85,7 +83,7 @@ export default function Screens() {
           id="aptoNumCadastro"
           value={aptoPessoa}
           onChange={(e) => setAptoPessoa(e.target.value)}
-          style={{ width: "100%", marginBottom: "10px" }}
+          style={{ width: "100%", marginBottom: "10px",  background: "#FFFFFF" }}
         />
         <TextField
           label="Tipo do utensilio"
@@ -96,7 +94,7 @@ export default function Screens() {
           value={tipoItem}
           disabled
           onChange={(e) => setTipoItem(e.target.value)}
-          style={{ width: "100%", marginBottom: "10px" }}
+          style={{ width: "100%", marginBottom: "10px",  background: "#FFFFFF" }}
         />
         <Grid item sm={12} xs={12} style={{ textAlign: "center", marginBottom: "10px" }}>
           {mensagem}
@@ -108,6 +106,7 @@ export default function Screens() {
             width: "100%",
             color: "#8b0e33",
             border: "solid 1px #8b0e33",
+            background: "#FFFFFF"
           }}
         >
           Enviar

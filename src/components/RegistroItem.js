@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, Paper, Button } from '@material-ui/core';
+import { Grid, Button } from '@material-ui/core';
 import Ferramentas from '../Screens/Ferramenta'
 import Cozinha from '../Screens/Cozinha'
 import Jardim from '../Screens/Jardim'

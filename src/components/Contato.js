@@ -20,44 +20,44 @@ export default function Contato() {
     setAssunto("")
     setMensagem("")
     setMsg("")
-}
+  }
 
-const salvarMensagem = () => {
+  const salvarMensagem = () => {
     let objeto = {
-        nome: nome,
-        email: email,
-        assunto: assunto,
-        mensagem: mensagem
+      nome: nome,
+      email: email,
+      assunto: assunto,
+      mensagem: mensagem
     }
 
     let code = uuidv4()
 
     Firebase
-        .database()
-        .ref(`email/${code}`)
-        .set(objeto)
-        .then(() => {
-            limpar()
-            setMsg("Mensagem Enviada com Sucesso!")
-        })
-        .catch((err) => {
-          setMsg("Erro ao enviar, tente novamente mais tarde.")
-        })
-    }
+      .database()
+      .ref(`email/${code}`)
+      .set(objeto)
+      .then(() => {
+        limpar()
+        setMsg("Mensagem Enviada com Sucesso!")
+      })
+      .catch((err) => {
+        setMsg("Erro ao enviar, tente novamente mais tarde.")
+      })
+  }
 
   return (
     <div>
-      <Grid container className="container">
+      <Grid container className="container" style={{ alignItems: "center", justifyContent: "center" }}>
         <Grid item sm={6} xs={12} className="container_cadastro">
-          <h1 style={{color: "#8b0e33", paddingTop: "55px" }}>Contato</h1>
-          <Paper elevation={0}>
+          <h1 style={{ color: "#8b0e33", paddingTop: "55px", textAlign: "center" }}>Contato</h1>
+          <Paper elevation={0} style={{ background: "transparent" }}>
             <TextField
               label="Nome"
               variant="outlined"
               size="small"
               value={nome}
               onChange={(e) => setNome(e.target.value)}
-              style={{ width: "100%", marginBottom: 10 }} />
+              style={{ width: "100%", marginBottom: "10px", background: "#FFFFFF" }} />
             <TextField
               label="E-mail"
               variant="outlined"
@@ -65,30 +65,34 @@ const salvarMensagem = () => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              style={{ width: "100%", marginBottom: 10 }} />
+              style={{ width: "100%", marginBottom: "10px", background: "#FFFFFF" }} />
             <TextField
               label="Assunto"
               variant="outlined"
               size="small"
               value={assunto}
               onChange={(e) => setAssunto(e.target.value)}
-              style={{ width: "100%", marginBottom: 10 }}
-              />
+              style={{ width: "100%", marginBottom: "10px", background: "#FFFFFF" }}
+            />
             <TextField
               label="Mensagem"
               variant="outlined"
               size="small"
               value={mensagem}
               onChange={(e) => setMensagem(e.target.value)}
-              style={{ width: "100%", marginBottom: 10 }}
+              style={{ width: "100%", marginBottom: "10px", background: "#FFFFFF" }}
             />
-            <Grid item sm={12} xs={12} style={{ textAlign: "center", color: "green", marginBottom: 5, fontSize: 16 }}> 
+            <Grid item sm={12} xs={12} style={{ textAlign: "center", color: "green", marginBottom: 5, fontSize: 16 }}>
               {msg}
             </Grid>
             <Button
               variant="outlined"
               onClick={salvarMensagem}
-              style={{ width: "100%", border: "1px solid #D3D3D3" }}>
+              style={{
+                width: "100%",
+                color: "#8b0e33",
+                border: "solid 1px #8b0e33", background: "#FFFFFF"
+              }}>
               Cadastrar
             </Button>
           </Paper>

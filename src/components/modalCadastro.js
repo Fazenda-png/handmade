@@ -9,17 +9,15 @@ export default function ModalCadastro() {
     const [cadastroEmail, setCadastroEmail] = useState("")
     const [cadastroSenha, setCadastroSenha] = useState("")
 
-    let history = useHistory()
+    const history = useHistory()
 
     const Cadastro = () => {
         Firebase
             .auth()
             .createUserWithEmailAndPassword(cadastroEmail, cadastroSenha)
             .then(() => {
-                console.log("deu certo")
                 history.push("/home")
             }).catch(
-                console.log("deu erro")
             )
     }
 
