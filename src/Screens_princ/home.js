@@ -11,48 +11,56 @@ import {
   TableBody,
   TableHead,
 } from "@material-ui/core";
-import Firebase from "../../Services/FirebaseConnect";
-import Menu from "../../components/Menu";
-import Fundo from "../../components/Fundo";
+import Firebase from "../Services/FirebaseConnect";
 
-function Pedidos() {
-  const [historico, setHistorico] = useState([]);
+
+function Home(props) {
+  const [lista, setLista] = useState([]);
 
   useLayoutEffect(() => {
-
-    Firebase
-      .database()
-      .ref(`/pedidos`)
-      .equalTo()
-      .on('value', snapchot => {
+    Firebase.database()
+      .ref(`pedidos`)
+      .on('value', (snapchot) => {
         // converter objetos em listas
         if (snapchot.val()) {
-          let dados = snapchot.val()
-          const keys = Object.keys(dados)
-          const historico = keys.map((key) => {
-            return { ...dados[key], id: key }
-          })
-          setHistorico(historico)
+          let dados = snapchot.val();
+          const keys = Object.keys(dados);
+          const lista = keys.map((key) => {
+            return { ...dados[key], id: key };
+          });
+          setLista(lista);
         } else {
-          setHistorico([])
+          setLista([]);
         }
-      })
+      });
+  }, []);
 
 
-  }, [])
+  const Empre = (item) => {
+    const empre = {
+      estado: "Emprestado",
+    };
 
+    Firebase.database()
+      .ref(`pedidos`)
+      .on("value", (snapchot) => {
+        const saida = snapchot.val();
+        const chave = Object.keys(saida);
+        const pedi = chave.map((key) => {
+          return { ...saida[key], id: key };
+        });
+        Firebase.database()
+          .ref(`pedidos/${item.id}`)
+          .update(empre)
+          .then((retorno) => {
+          })
+          .catch((erro) => { });
+      });
+  };
 
-  const Excluir = (item) => {
-    Firebase
-      .database()
-      .ref(`/pedidos/${item.id}`)
-      .remove()
-  }
 
   return (
     <div>
-      <Fundo></Fundo>
-      <Menu></Menu>
       <Container>
         <Grid container spacing={1} style={{ padding: "100px" }}>
           <TableContainer component={Paper}>
@@ -68,7 +76,7 @@ function Pedidos() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {historico.map((item, key) => {
+                {lista.map((item, key) => {
                   return (
                     <TableRow key={key} style={{ width: "100%" }}>
                       <TableCell component="th" scope="row">
@@ -79,11 +87,12 @@ function Pedidos() {
                       <TableCell align="right">{item.tipo}</TableCell>
                       <TableCell align="right">{item.quantidade}</TableCell>
                       <TableCell align="right">{item.estado}</TableCell>
-                      <TableCell><Button onClick={() => Excluir(item)}>Excluir</Button></TableCell>
+                      <TableCell><Button 
+                        onClick={() => Empre(item)}
+                      >Emprestar</Button></TableCell>
                     </TableRow>
                   );
                 })}
-
               </TableBody>
             </Table>
           </TableContainer>
@@ -93,4 +102,4 @@ function Pedidos() {
   );
 }
 
-export default Pedidos;
+export default Home;

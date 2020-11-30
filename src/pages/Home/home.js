@@ -1,108 +1,89 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useState, useLayoutEffect } from 'react'
+
 import {
   Button,
   Grid,
   Paper,
-  TableCell,
-  TableRow,
-  Container,
-  TableContainer,
-  Table,
-  TableBody,
-  TableHead,
-} from "@material-ui/core";
-import Firebase from "../../Services/FirebaseConnect";
-import Menu from "../../components/Menu";
-import Fundo from "../../components/Fundo";
+  MenuList,
+  MenuItem,
+  Container
+}
+  from '@material-ui/core';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { useHistory } from "react-router-dom";
+import Firebase from '../../Services/FirebaseConnect'
+import Home from '../../Screens_princ/home'
+import Adicionar from '../../Screens_princ/Adicionar'
+import Contato from '../../Screens_princ/Contato'
+import Pedidos from '../../Screens_princ/Pedidos'
+import Fundo from '../../components/Fundo'
 
-function Home(props) {
-  const [lista, setLista] = useState([]);
+export default function Menu() {
+  const email = localStorage.getItem('email');
 
-  useLayoutEffect(() => {
-    Firebase.database()
-      .ref(`pedidos`)
-      .on('value', (snapchot) => {
-        // converter objetos em listas
-        if (snapchot.val()) {
-          let dados = snapchot.val();
-          const keys = Object.keys(dados);
-          const lista = keys.map((key) => {
-            return { ...dados[key], id: key };
-          });
-          setLista(lista);
-        } else {
-          setLista([]);
-        }
-      });
-  }, []);
+  const history = useHistory();
 
+  const [screen, setScreen] = useState(0)
 
-  const Empre = (item) => {
-    const empre = {
-      estado: "Emprestado",
-    };
-
-    Firebase.database()
-      .ref(`pedidos`)
-      .on("value", (snapchot) => {
-        const saida = snapchot.val();
-        const chave = Object.keys(saida);
-        const pedi = chave.map((key) => {
-          return { ...saida[key], id: key };
-        });
-        Firebase.database()
-          .ref(`pedidos/${item.id}`)
-          .update(empre)
-          .then((retorno) => {
-          })
-          .catch((erro) => { });
-      });
-  };
-
+  const logoff = () => {
+    sessionStorage.removeItem("uuid")
+    Firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        history.push("/");
+      }).catch(() => {
+        history.push("/");
+      })
+  }
 
   return (
     <div>
       <Fundo></Fundo>
-      <Menu></Menu>
-      <Container>
-        <Grid container spacing={1} style={{ padding: "100px" }}>
-          <TableContainer component={Paper}>
-            <Table aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  <TableCell>Nome</TableCell>
-                  <TableCell align="right">Apartamento</TableCell>
-                  <TableCell align="right">Item</TableCell>
-                  <TableCell align="right">Tipo do item</TableCell>
-                  <TableCell align="right">Quantidade</TableCell>
-                  <TableCell align="right">Status</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {lista.map((item, key) => {
-                  return (
-                    <TableRow key={key} style={{ width: "100%" }}>
-                      <TableCell component="th" scope="row">
-                        {item.nome_pessoa}
-                      </TableCell>
-                      <TableCell align="right">{item.apto_pessoa}</TableCell>
-                      <TableCell align="right">{item.nome}</TableCell>
-                      <TableCell align="right">{item.tipo}</TableCell>
-                      <TableCell align="right">{item.quantidade}</TableCell>
-                      <TableCell align="right">{item.estado}</TableCell>
-                      <TableCell><Button 
-                        onClick={() => Empre(item)}
-                      >Emprestar</Button></TableCell>
-                    </TableRow>
-                  );
-                })}
-              </TableBody>
-            </Table>
-          </TableContainer>
+      <Grid >
+        <Grid item sm={12} xs={12} style={{ background: "#f5000082" }}>
+          <Grid item sm={12} xs={12} >
+            <Paper style={{ padding: "20px", display: "flex", borderRadius: "0px" }}>
+              <MenuList style={{ display: "flex", alignItems: "center" }}>
+                <p>Bem vindo(a) {email} ao Handmade</p>
+              </MenuList>
+              <MenuList style={{ display: "flex", justifyContent: "flex-end", position: "absolute", right: "0", }}>
+                <MenuItem onClick={() => setScreen(0)}>Home</MenuItem>
+                <MenuItem onClick={() => setScreen(1)}>Adicionar</MenuItem>
+                <MenuItem onClick={() => setScreen(2)}>Contato</MenuItem>
+                <MenuItem onClick={() => setScreen(3)}>Pedidos</MenuItem>
+                <MenuItem>
+                  <Button
+                    onClick={logoff}
+                    variant="contained"
+                    style={{ background: "#f5000082" }}
+                    startIcon={<ExitToAppIcon />}>
+                    Logoff
+                    </Button>
+                </MenuItem>
+              </MenuList>
+            </Paper>
+          </Grid>
+        </Grid>
+      </Grid>
+      <Container style={{ margin: "40px" }}>
+        <Grid item sm={12} xs={12}>
+          <Paper>
+            {screen == 0 &&
+              <Home setScreen={setScreen} />
+            }
+            {screen == 1 &&
+              <Adicionar setScreen={setScreen} />
+            }
+            {screen == 2 &&
+              <Contato setScreen={setScreen} />
+            }
+            {screen == 3 &&
+              <Pedidos setScreen={setScreen} />
+            }
+          </Paper>
         </Grid>
       </Container>
-    </div>
-  );
+    </div >
+  )
 }
-
-export default Home;

@@ -19,19 +19,28 @@ function Main() {
                                 Handmade
                             </Title>
                             <SubTitle>
-                                Como funciona:
-                            </SubTitle>
-                            <p>  A intensão do site é ser o mais intuitivo o possível para os vendedores e para seus clientes. Basicamente o vendedor ira realizar o seu cadastro e apresentar um "Cardápio" onde seu cliente ira poder ter acesso e realizar a encomenda dos produtos via WhatsApp
-</p>
-                            <SubTitle>
                                 Para que é:
                             </SubTitle>
-                            <p>Este site é indicado para você que trabalha sobre encomenda de produtos e que expandir suas vendas conseguindo fazer o gerenciamento pelo mesmo e tendo contado dos seus clientes no seu celular.</p>
-
+                            <p>O intuito do projeto é ser utilizado por grandes condominos e edifícil para que seus moradores possam emprestar utensilios uns aos outros sem nenhum problema e sempre dentro da regra estabelecida. Proximo semestre a versão Mobile hehe</p>
+                            <SubTitle>
+                                Como funciona:
+                            </SubTitle>
+                            <p>O condominio/edifícil será cadastrado e poderá ser acessado por qualquer morador, o mesmo pode fazer o cadastro de um pedido onde outros moradores poderão acompanhar e conseguir ver em tempo real o pedido e realizar o emprestimo.</p>
                         </Paper>
                     </Grid>
                     <Grid item xs={6}>
-
+                        <SubTitle>
+                            Nome: João Pedro Fazenda dos Santos
+                        </SubTitle>
+                        <SubTitle>
+                            email: 1117210@imed.edu.br
+                        </SubTitle>
+                        <SubTitle>
+                            R.A: 1117210
+                        </SubTitle>
+                        <SubTitle>
+                            Github: (colocar em casa)
+                        </SubTitle>
                     </Grid>
                 </Grid>
             </Container>
